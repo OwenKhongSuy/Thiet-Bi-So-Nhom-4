@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thiết bị số & Bluetooth — Học qua trò chơi</title>
+  <style>
+    * {box-sizing: border-box; margin:0; padding:0}
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#3b82f6;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --maxw:1000px;
+      --text:#e6eef8;
+    }
+    body{
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg,#071023 0%, #071629 60%);
+      color:var(--text);
+      line-height:1.45;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;
+      padding:20px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    header{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .logo{
+      width:56px; height:56px;
+      background:linear-gradient(135deg,var(--accent), #06b6d4);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:white;
+      box-shadow: 0 6px 18px rgba(59,130,246,0.18);
+      flex:0 0 56px;
+    }
+    h1{font-size:18px}
+    p.lead{color:var(--muted); font-size:14px; margin-top:6px}
+    nav{
+      margin-top:12px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .tab{
+      background:var(--glass);
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      color:var(--text);
+      font-weight:600;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .tab.active{ background: linear-gradient(90deg, rgba(59,130,246,0.14), rgba(6,182,212,0.06)); box-shadow: 0 4px 18px rgba(3,7,18,0.6);}
+    main{ margin-top:18px; display:grid; gap:16px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:16px;
+    }
+    @media (max-width:900px){ .grid{ grid-template-columns: 1fr; } }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+      border-radius: var(--radius);
+      padding:16px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+    }
+    footer{ margin-top:16px; color:var(--muted); font-size:13px; text-align:center }
+
+    .quiz-question{ font-size:16px; margin-bottom:12px }
+    .options{ display:flex; flex-direction:column; gap:10px }
+    .opt{
+      background:rgba(255,255,255,0.02);
+      padding:10px;
+      border-radius:8px;
+      cursor:pointer;
+      border:1px solid transparent;
+    }
+    .opt:hover{ border-color: rgba(255,255,255,0.04) }
+    .opt.correct{ background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.18) }
+    .opt.wrong{ background: rgba(239,68,68,0.10); border-color: rgba(239,68,68,0.18) }
+
+    .btn{
+      background:var(--accent);
+      color:white;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      border:none;
+      font-weight:700;
+    }
+    .btn.ghost{ background:transparent; border:1px solid rgba(255,255,255,0.05); color:var(--text); font-weight:600}
+    .muted{ color:var(--muted); font-size:13px }
+
+    .member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:10px}
+    .member-card{text-align:center;padding:10px;background:rgba(255,255,255,0.03);border-radius:10px}
+    .member-card img{width:70px;height:70px;border-radius:50%;object-fit:cover;margin-bottom:6px;border:1px solid rgba(255,255,255,0.1)}
+
+  </style>
+</head>
+<body>
+<div class="wrap" role="main">
+  <header>
+    <div class="logo">36</div>
+    <div>
+      <h1>Trò chơi: Thiết bị số & Hướng dẫn Bluetooth</h1>
+      <p class="lead">Học qua trò chơi và hiểu về kết nối máy tính ↔ điện thoại.</p>
+      <nav>
+        <button class="tab active" data-tab="home">Trang chủ</button>
+        <button class="tab" data-tab="games">Trò chơi</button>
+        <button class="tab" data-tab="guide">Hướng dẫn</button>
+        <button class="tab" data-tab="members">Giới thiệu thành viên</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section id="content">
+        <article id="home" class="card content-panel">
+          <h2>Chào mừng!</h2>
+          <p class="muted" style="margin-top:8px">Trang web giúp bạn hiểu về thiết bị số, thử trò chơi, và thực hành kết nối Bluetooth.</p>
+        </article>
+
+        <article id="games" class="card content-panel" style="display:none;">
+          <h2>Trò chơi kiến thức</h2>
+          <p class="muted" style="margin-top:8px">Chọn loại trò chơi:</p>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <button class="btn" onclick="startQuiz()">Trắc nghiệm</button>
+            <button class="btn" onclick="startTF()">Đúng/Sai</button>
+            <button class="btn" onclick="startFill()">Điền từ</button>
+            <button class="btn" onclick="startMatch()">Ghép đôi</button>
+          </div>
+
+          <div id="game-area" style="margin-top:14px"></div>
+          <p id="total-score" class="muted" style="margin-top:10px"></p>
+        </article>
+
+        <article id="guide" class="card content-panel" style="display:none;">
+          <h2>Hướng dẫn kết nối Bluetooth</h2>
+          <ul style="margin-left:18px;margin-top:8px;color:var(--muted)">
+            <li>Bật Bluetooth trên cả điện thoại và máy tính.</li>
+            <li>Trên máy tính, mở “Bluetooth & Devices” → “Add Device”.</li>
+            <li>Chọn tên điện thoại, xác nhận mã ghép đôi nếu có.</li>
+            <li>Sau khi kết nối, chọn “Send/Receive files via Bluetooth”.</li>
+            <li>Tập tin nhận thường nằm trong thư mục “Downloads”.</li>
+          </ul>
+        </article>
+
+        <article id="members" class="card content-panel" style="display:none;">
+          <h2>Giới thiệu thành viên</h2>
+          <div class="member-grid">
+            <div class="member-card"><img src="manhtuan.jpg"><div><b>Mạnh Tuấn</b><br><span class="muted">Sử dụng AI</span></div></div>
+            <div class="member-card"><img src="baongoc.jpg"><div><b>Bảo Ngọc</b><br><span class="muted">Soạn câu hỏi</span></div></div>
+            <div class="member-card"><img src="hongquan.jpg"><div><b>Hồng Quân</b><br><span class="muted">Soạn câu hỏi</span></div></div>
+            <div class="member-card"><img src="manhtuan.jpg"><div><b>Thuỳ Linh</b><br><span class="muted">Soạn câu hỏi</span></div></div>
+            <div class="member-card"><img src="manhtuan.jpg"><div><b>Hoàng Vũ</b><br><span class="muted">Thiết bị số phổ biến</span></div></div>
+            <div class="member-card"><img src="manhtuan.jpg"><div><b>Xuân Thanh</b><br><span class="muted">Nội dung hướng dẫn</span></div></div>
+          </div>
+        </article>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3>Thiết bị số phổ biến</h3>
+          <ul style="margin-left:18px;margin-top:8px;color:var(--muted)">
+            <li>Điện thoại thông minh</li>
+            <li>Laptop / Máy tính để bàn</li>
+            <li>Tai nghe Bluetooth</li>
+            <li>Ổ cứng di động</li>
+            <li>Router Wi-Fi</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div class="muted">© Nhóm 4 - Thiết bị số & Bluetooth</div>
+    </footer>
+  </main>
+</div>
+
+<script>
+const tabs=document.querySelectorAll('.tab');
+tabs.forEach(b=>b.addEventListener('click',()=>{
+  tabs.forEach(t=>t.classList.remove('active'));
+  b.classList.add('active');
+  document.querySelectorAll('.content-panel').forEach(p=>p.style.display='none');
+  document.getElementById(b.dataset.tab).style.display='block';
+}));
+
+let totalScore=0;
+function updateScore(s){totalScore+=s;document.getElementById('total-score').textContent="Tổng điểm: "+totalScore;}
+
+const quizData=[
+ {q:"Thiết bị nào dùng để nhập dữ liệu?",opts:["Màn hình","Chuột","Loa"],a:1},
+ {q:"Bluetooth dùng để?",opts:["Truyền dữ liệu không dây","Cấp nguồn","Chiếu sáng"],a:0},
+ {q:"Thiết bị nào lưu trữ dữ liệu?",opts:["RAM","Ổ cứng","Màn hình"],a:1},
+];
+function startQuiz(){
+ const area=document.getElementById('game-area');let i=0,score=0;
+ function load(){
+  if(i>=quizData.length){area.innerHTML=`Hoàn thành! Điểm: ${score}`;updateScore(score);return;}
+  const q=quizData[i];area.innerHTML=`<div class='quiz-question'>${q.q}</div>`;q.opts.forEach((t,idx)=>{
+    const b=document.createElement('div');b.className='opt';b.textContent=t;b.onclick=()=>{if(idx===q.a){b.classList.add('correct');score+=10;}else b.classList.add('wrong');setTimeout(()=>{i++;load();},600);};area.appendChild(b);
+  });
+ }load();
+}
+
+const tfData=[
+ {q:"Wi-Fi và Bluetooth đều là kết nối không dây.",a:true},
+ {q:"RAM lưu trữ dữ liệu vĩnh viễn.",a:false},
+ {q:"Router giúp chia sẻ Internet.",a:true}
+];
+function startTF(){
+ const a=document.getElementById('game-area');let i=0,s=0;
+ function load(){
+  if(i>=tfData.length){a.innerHTML=`Hoàn thành! Điểm: ${s}`;updateScore(s);return;}
+  const q=tfData[i];
+  a.innerHTML=`<div class='quiz-question'>${q.q}</div>
+  <button class='btn' onclick='ans(true)'>Đúng</button>
+  <button class='btn ghost' onclick='ans(false)'>Sai</button>`;
+ }
+ window.ans=(val)=>{if(val===tfData[i].a)s+=10;i++;load();};
+ load();
+}
+
+const fillData=[
+ {q:"Thiết bị dùng để nghe âm thanh là _____.",a:"tai nghe"},
+ {q:"Ổ cứng dùng để ____ dữ liệu.",a:"lưu trữ"},
+ {q:"Chuột giúp ____ con trỏ trên màn hình.",a:"điều khiển"}
+];
+function startFill(){
+ const a=document.getElementById('game-area');let i=0,s=0;
+ function load(){
+  if(i>=fillData.length){a.innerHTML=`Hoàn thành! Điểm: ${s}`;updateScore(s);return;}
+  const q=fillData[i];
+  a.innerHTML=`<div class='quiz-question'>${q.q}</div><input id='ans' placeholder='Nhập đáp án (Viết đúng chính tả và không được thừa, thiếu dấu cách)' style='padding:8px;border-radius:8px;width:100%'><button class='btn' onclick='check()'>Trả lời</button>`;
+ }
+ window.check=()=>{const val=document.getElementById('ans').value.trim().toLowerCase();if(val===fillData[i].a)s+=10;i++;load();};
+ load();
+}
+
+const matchPairs=[
+ ["Điện thoại","Gọi, nhắn tin, internet"],
+ ["Router","Chia sẻ mạng Internet"],
+ ["Tai nghe","Nghe âm thanh"]
+];
+function startMatch(){
+ const a=document.getElementById('game-area');let matched=0;
+ let left=matchPairs.map(p=>p[0]);let right=matchPairs.map(p=>p[1]);
+ left.sort(()=>Math.random()-0.5);right.sort(()=>Math.random()-0.5);
+ a.innerHTML="<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px'><div id='L'></div><div id='R'></div></div><div id='msg' class='muted'></div>";
+ left.forEach(t=>{const d=document.createElement('div');d.className='opt';d.textContent=t;d.onclick=()=>sel(d,'L');L.appendChild(d);});
+ right.forEach(t=>{const d=document.createElement('div');d.className='opt';d.textContent=t;d.onclick=()=>sel(d,'R');R.appendChild(d);});
+ let first=null;
+ window.sel=(el,col)=>{
+  if(!first){first={el,col};el.style.outline="2px solid var(--accent)";}
+  else{
+   const l=first.col==='L'?first.el.textContent:el.textContent;
+   const r=first.col==='R'?first.el.textContent:el.textContent;
+   if(matchPairs.find(p=>p[0]===l&&p[1]===r)){first.el.classList.add('correct');el.classList.add('correct');matched++;msg.textContent="Ghép đúng!";}
+   else msg.textContent="Sai rồi.";first.el.style.outline="";first=null;
+   if(matched===matchPairs.length){msg.textContent="Hoàn thành!";updateScore(matched*10);}
+  }
+ };
+}
+</script>
+</body>
+</html>
