@@ -114,7 +114,25 @@
     .member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:10px}
     .member-card{text-align:center;padding:10px;background:rgba(255,255,255,0.03);border-radius:10px}
     .member-card img{width:70px;height:70px;border-radius:50%;object-fit:cover;margin-bottom:6px;border:1px solid rgba(255,255,255,0.1)}
-
+    .image-banner {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.image-banner img {
+  width: 300px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.image-banner img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
   </style>
 </head>
 <body>
@@ -139,6 +157,14 @@
         <article id="home" class="card content-panel">
           <h2>Chào mừng!</h2>
           <p class="muted" style="margin-top:8px">Trang web giúp bạn hiểu về thiết bị số, thử trò chơi, và thực hành kết nối Bluetooth.</p>
+            <div class="image-banner">
+    <img src="thietbiso1.jpg" alt="Thiết bị số hiện đại">
+    <img src="bluetooth.jpg" alt="Kết nối Bluetooth">
+  </div>
+
+  <p class="muted" style="margin-top:12px">
+    Hãy khám phá thế giới thiết bị số quanh bạn — từ điện thoại thông minh, laptop, cho tới router Wi-Fi và tai nghe Bluetooth.
+  </p>
         </article>
 
         <article id="games" class="card content-panel" style="display:none;">
